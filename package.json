@@ -1,7 +1,6 @@
 {
   "name": "meracaarserver",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -16,5 +15,16 @@
     "mysql": "^2.15.0",
     "sync-mysql": "^3.0.1",
     "unescape": "^1.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartik2112/MeraCaarServer.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/kartik2112/MeraCaarServer/issues"
+  },
+  "homepage": "https://github.com/kartik2112/MeraCaarServer#readme",
+  "description": ""
 }
