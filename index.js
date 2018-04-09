@@ -113,6 +113,38 @@ app.get('/listAllCarComponentsNames',function(req,res){
   
   // connection.connect();
 
+  var results = connection.query('SELECT elemCode,elemName FROM carData WHERE ORDER BY elemName');
+  // , function (error, results, fields) {
+    // if (error) throw error;
+  results = JSON.parse(JSON.stringify(results));
+  console.log('No of car elements fetched: ', results.length);
+  // console.log(results);
+  
+  
+  res.json(results);
+  // connection.end();
+  
+
+  // fs.readFile( __dirname + "/" + "carData.json", 'utf8', function (err, data) {
+  //     res.setHeader('Content-Type', 'application/json');
+  //     // console.log( data );
+  //     data = JSON.parse(data);
+  //     console.log("Fetching entire JSON file");
+  //     res.json( data['carData'] );
+  // });
+});
+
+app.get('/listAllUniqueCarComponentsNames',function(req,res){
+  
+  var connection = new mysql({
+    host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
+    user     : 'root',
+    password : 'kkksss333',
+    database : 'MeraCaar'
+  });
+  
+  // connection.connect();
+
   var results = connection.query('SELECT elemCode,elemName FROM carData WHERE anchorDisplay=\'true\' ORDER BY elemName');
   // , function (error, results, fields) {
     // if (error) throw error;
