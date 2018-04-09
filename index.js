@@ -74,7 +74,7 @@ app.get('/listAllCarComponentsDetails',function(req,res){
   console.log('No of car elements fetched: ', results.length);
   // console.log(results);
   for(var i=0;i<results.length;i++){
-    var results1 = connection.query(`SELECT referenceLink FROM carDataReferences WHERE elemCode='${results[i].elemCode}'`);
+    var results1 = connection.query(`SELECT referenceLink FROM carDataReferences WHERE elemCode='${results[i].elemCode}' ORDER BY elemName`);
     // , function (error1, results1, fields1){
       // if (error1) throw error1;
     results1 = JSON.parse(JSON.stringify(results1));
@@ -113,7 +113,7 @@ app.get('/listAllCarComponentsNames',function(req,res){
   
   // connection.connect();
 
-  var results = connection.query('SELECT elemCode,elemName FROM carData WHERE anchorDisplay=\'true\'');
+  var results = connection.query('SELECT elemCode,elemName FROM carData WHERE anchorDisplay=\'true\' ORDER BY elemName');
   // , function (error, results, fields) {
     // if (error) throw error;
   results = JSON.parse(JSON.stringify(results));
@@ -146,7 +146,7 @@ app.get('/listAllCarComponentsCodes',function(req,res){
   
   // connection.connect();
 
-  var results = connection.query('SELECT elemCode FROM carData');
+  var results = connection.query('SELECT elemCode FROM carData ORDER BY elemName');
   // , function (error, results, fields) {
     // if (error) throw error;
   results = JSON.parse(JSON.stringify(results));
@@ -299,6 +299,41 @@ app.post('/updateComponentData',function(req,res){
     }
     
     
+    res.json(results);
+    
+  }
+  else{
+    res.end("Incorrect key specified");
+    console.log("Attempting to add using incorrect key!!!");
+  }
+});
+
+
+app.post('/deleteComponent',function(req,res){
+  res.setHeader('Content-Type', 'application/json');
+  // console.log(req.body);
+  let keyHash = crypto.createHash('md5').update(req.body.modificationKey).digest("hex");
+
+  
+  
+  // var newDataReferences = req.body.carDataReferences;
+  
+  var data = fs.readFileSync( __dirname + "/" + "carData.json", 'utf8');
+  data = JSON.parse(data);
+  console.log(data);
+  if(data['dataModificationKey'] === keyHash){
+
+    var connection = new mysql({
+      host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
+      user     : 'root',
+      password : 'kkksss333',
+      database : 'MeraCaar'
+    });
+  
+    var results1 = connection.query(`DELETE FROM carDataReferences WHERE elemCode='${req.body.elemCode}'`);
+    var results = connection.query(`DELETE FROM carData WHERE elemCode='${req.body.elemCode}'`);
+    
+    console.log('Data deleted of : ',req.body.elemCode,'\nResult:', results);
     res.json(results);
     
   }
