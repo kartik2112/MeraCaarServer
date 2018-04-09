@@ -10,6 +10,8 @@ var escape = require('escape-html');  //Reference: https://www.npmjs.com/package
 var decode = require('unescape');     //Reference: https://www.npmjs.com/package/unescape
 var md5sum = crypto.createHash('md5');
 
+const PORT = process.env.PORT || 5000
+
 
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -262,7 +264,7 @@ app.post('/addComponentData',function(req,res){
 });
 
 
-var server = app.listen(8081, function () {
+var server = app.listen(PORT, function () {
   
   var host = server.address().address
   var port = server.address().port
