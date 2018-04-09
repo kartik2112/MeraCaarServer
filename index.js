@@ -145,7 +145,7 @@ app.get('/listAllCarComponentsCodes',function(req,res){
   
   // connection.connect();
 
-  var results = connection.query('SELECT elemCode FROM carData');
+  var results = connection.query('SELECT elemCode FROM carData WHERE anchorDisplay=\'true\'');
   // , function (error, results, fields) {
     // if (error) throw error;
   results = JSON.parse(JSON.stringify(results));
@@ -281,7 +281,7 @@ var server = app.listen(PORT, function () {
 //         parentGrpName varchar(40),
 //         anchorDisplay varchar(5),
 //         youTubeUrl varchar(50),
-//         sampleImageUrl varchar(80),
+//         sampleImageUrl varchar(150),
 //         explanation varchar(1000),
 //         arrow_tail_path_d varchar(60),
 //         arrow_head_path_d varchar(60),
