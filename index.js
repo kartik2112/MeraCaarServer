@@ -113,7 +113,7 @@ app.get('/listAllCarComponentsNames',function(req,res){
   
   // connection.connect();
 
-  var results = connection.query('SELECT elemCode,elemName FROM carData WHERE ORDER BY elemName');
+  var results = connection.query('SELECT elemCode,elemName FROM carData ORDER BY elemName');
   // , function (error, results, fields) {
     // if (error) throw error;
   results = JSON.parse(JSON.stringify(results));
