@@ -112,7 +112,7 @@ app.get('/listAllCarComponentsNames',function(req,res){
   
   // connection.connect();
 
-  var results = connection.query('SELECT elemCode,elemName FROM carData');
+  var results = connection.query('SELECT elemCode,elemName FROM carData WHERE anchorDisplay=\'true\'');
   // , function (error, results, fields) {
     // if (error) throw error;
   results = JSON.parse(JSON.stringify(results));
@@ -145,7 +145,7 @@ app.get('/listAllCarComponentsCodes',function(req,res){
   
   // connection.connect();
 
-  var results = connection.query('SELECT elemCode FROM carData WHERE anchorDisplay=\'true\'');
+  var results = connection.query('SELECT elemCode FROM carData');
   // , function (error, results, fields) {
     // if (error) throw error;
   results = JSON.parse(JSON.stringify(results));
