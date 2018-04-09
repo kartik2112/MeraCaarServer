@@ -11,6 +11,7 @@ var decode = require('unescape');     //Reference: https://www.npmjs.com/package
 var md5sum = crypto.createHash('md5');
 
 const PORT = process.env.PORT || 5000
+// const PORT = 8081
 
 
 //support parsing of application/x-www-form-urlencoded post data
@@ -264,6 +265,50 @@ app.post('/addComponentData',function(req,res){
 });
 
 
+app.post('/updateComponentData',function(req,res){
+  res.setHeader('Content-Type', 'application/json');
+  // console.log(req.body);
+  let keyHash = crypto.createHash('md5').update(req.body.modificationKey).digest("hex");
+
+  
+  
+  var newData = req.body.carData;
+  // var newDataReferences = req.body.carDataReferences;
+  
+  var data = fs.readFileSync( __dirname + "/" + "carData.json", 'utf8');
+  data = JSON.parse(data);
+  console.log(data);
+  if(data['dataModificationKey'] === keyHash){
+
+    var connection = new mysql({
+      host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
+      user     : 'root',
+      password : 'kkksss333',
+      database : 'MeraCaar'
+    });
+  
+    var results = connection.query(`UPDATE carData SET elemName='${newData.elemName}',parentGrpName='${newData.parentGrpName}',anchorDisplay='${newData.anchorDisplay}',youTubeUrl='${"https://www.youtube.com/embed/"+newData.youTubeUrl }',sampleImageUrl='${newData.sampleImageUrl}',explanation='${escape(newData.explanation)}',arrow_tail_path_d='${newData.arrow_tail_path_d}',arrow_head_path_d='${newData.arrow_head_path_d}',soundUrl='${newData.soundUrl}' WHERE elemCode='${newData.elemCode}'`);
+    
+    console.log('Data updated: ',newData,'\nResult:', results);
+    res.json(results);
+    
+    var results1 = connection.query(`DELETE FROM carDataReferences WHERE elemCode='${newData.elemCode}'`);
+    for(var j=0;j<newData.references.length;j++){
+      results1 = connection.query(`INSERT INTO carDataReferences(elemCode,referenceLink) values('${newData.elemCode}','${newData.references[j]}')`);
+      console.log('Data added: ',newData.references[j],'\nResult:', results1);
+    }
+    
+    
+    res.json(results);
+    
+  }
+  else{
+    res.end("Incorrect key specified");
+    console.log("Attempting to add using incorrect key!!!");
+  }
+});
+
+
 var server = app.listen(PORT, function () {
   
   var host = server.address().address
@@ -288,6 +333,6 @@ var server = app.listen(PORT, function () {
 //         soundUrl varchar(60));
 
 // create table carDataReferences(elemCode varchar(40), 
-//         referenceLink varchar(50),
+//         referenceLink varchar(150),
 //         primary key(elemCode, referenceLink),
 //         foreign key(elemCode) references carData(elemCode));
