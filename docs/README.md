@@ -99,7 +99,8 @@ This API can be used for getting details about car components. The details have 
 
     **Query Parameters:** 
     JSON Object containing elemCode should be sent through POST to this endpoint. (Direct support for Angular Requests, otherwise set content-type: text/json)
-    {"elemCode":"engineFWD"}
+    
+    ```{"elemCode":"engineFWD"}```
 
     **Example Output (in JSON):**
     
@@ -123,7 +124,7 @@ This API can be used for getting details about car components. The details have 
          }
         ```
  
-* **Add Component
+* **Add Component**
 
     **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/addComponentData
 
@@ -153,39 +154,9 @@ This API can be used for getting details about car components. The details have 
             }
         ]
         ```
- * **Get Car Component Details**
-
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/getCarComponentsDetails
-
-    **Description:** This provides an array of unique objects where each object has elemCode and elemName of all the components in the database. As you can see for listAllCarComponentsNames, the array returned has 4 Stroke Engine returned twice in the array. This endpoint prevents this from happening as shown in example output.
-
-    **HTTP Method:** POST
-
-    **Query Parameters:** 
-    JSON Object containing elemCode should be sent through POST to this endpoint. (Direct support for Angular Requests, otherwise set content-type: text/json)
-    {"elemCode":"engineFWD"}
-
-    **Example Output (in JSON):**
-    
-        ```
-        [    
-            {
-                "elemCode": "engineFWD",
-                "elemName": "4 Stroke Engine"
-            },
-            {
-                "elemCode": "carburetor",
-                "elemName": "Carburetor"
-            },
-            {
-                "elemCode": "differential",
-                "elemName": "Differential System"
-            }
-        ]
-        ```
- 
- 
- ## MeraCaar Object Structure
+        
+        
+ # MeraCaar Object Structure
  
  The attributes of the object used by MeraCaar Server API are:
  
@@ -194,11 +165,13 @@ This API can be used for getting details about car components. The details have 
  * **elemName:** This is the name of the component.
  * **parentGrpName:** This is the view in which the component will be pointed out. This is specifically useful to [Mera Caar](https://mera-caar.firebaseapp.com) where different views have different components indicated in them.
  * **anchorDisplay:** As mentioned in elemCode, multiple components in database can have same content for different views. This may be done to indicate engine in Front Wheel and Rear Wheel Drive views. This is used for filtering the components in the database for finding out only unique components. Thus, in this case, only one of such duplicate components will be having anchorDisplay value true.
- Possible Values: true | false
- * **youTubeUrl:** This is the URL of the YouTube video most relevant to the component preselected by the admin of this API.
+ Possible Values: ```true | false```
+ * **youTubeUrl:** This is the URL of the YouTube video most relevant to the component preselected by the admin of this API. This is of the format: [https://www.youtube.com/embed/XXXXXX](https://www.youtube.com/embed/XXXXXX). Here, XXXXXX is the YouTube video code that can be found in the URL of that video. This format is necessary for embedding the YouTube video IFrame in the page.
  * **sampleImageUrl:** This is the URL of the image most relevant to the component preselected by the admin of this API.
  * **explanation:** This is the explanation most relevant to the component preselected by the admin of this API. This explanation is written using HTML tags, so that it can be directly displayed along with formatting.
- * **arrow_tail_path_d:** This holds the coordinates
- * arrow_head_path_d
- * soundUrl
- * references
+ * **arrow_tail_path_d:** This holds the coordinates of the arrow tail that points to the component in the view. **Ignore This since it is specific to [Mera Caar](https://mera-caar.firebaseapp.com)**.
+ * **arrow_head_path_d:** This holds the coordinates of the arrow head that points to the component in the view. **Ignore This since it is specific to [Mera Caar](https://mera-caar.firebaseapp.com)**.
+ * **soundUrl:** This holds the filename of the sound most relevant to the component preselected by the admin of this API. If the soundUrl is ```engine-rev.mp3```, then this sound can be found at the URL: [https://blooming-garden-90433.herokuapp.com/sounds/engine-rev.mp3](https://blooming-garden-90433.herokuapp.com/sounds/engine-rev.mp3)
+ * **references:** This is an array of URLs to references most relevant to the component preselected by the admin of this API.
+ 
+ 
