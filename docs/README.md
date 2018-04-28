@@ -6,7 +6,7 @@ This API can be used for getting details about car components. The details have 
 
 * **List All Car Component Names**
 
-    **URL:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsNames
+    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsNames
 
     **Description:** This provides an array of objects where each object has elemCode and elemName of all the components in the database.
 
@@ -15,6 +15,7 @@ This API can be used for getting details about car components. The details have 
     **Query Parameters:** None
 
     **Example Output (in JSON):**
+    
         ```
         [    
             {
@@ -38,7 +39,7 @@ This API can be used for getting details about car components. The details have 
 
 * **List All Unique Car Component Names**
 
-    **URL:** https://blooming-garden-90433.herokuapp.com/listAllUniqueCarComponentsNames
+    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllUniqueCarComponentsNames
 
     **Description:** This provides an array of unique objects where each object has elemCode and elemName of all the components in the database. As you can see for listAllCarComponentsNames, the array returned has 4 Stroke Engine returned twice in the array. This endpoint prevents this from happening as shown in example output.
 
@@ -47,6 +48,125 @@ This API can be used for getting details about car components. The details have 
     **Query Parameters:** None
 
     **Example Output (in JSON):**
+    
+        ```
+        [    
+            {
+                "elemCode": "engineFWD",
+                "elemName": "4 Stroke Engine"
+            },
+            {
+                "elemCode": "carburetor",
+                "elemName": "Carburetor"
+            },
+            {
+                "elemCode": "differential",
+                "elemName": "Differential System"
+            }
+        ]
+        ```
+
+* **List All Car Component Codes**
+
+    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsCodes
+
+    **Description:** This provides an array of elemCodes of all the components in the database.
+
+    **HTTP Method:** GET
+
+    **Query Parameters:** None
+
+    **Example Output (in JSON):**
+    
+        ```
+        [
+             "enginerwd",
+             "enginefwd",
+             "carburetor",
+             "differential",
+             "discbrake",
+             "drumbrake"
+         ]
+        ```
+
+* **Get Car Component Details**
+
+    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/getCarComponentsDetails
+
+    **Description:** This provides an object containing the details of the object whose elemCode is provided through POST. This object is as described [here](#meracaar-object-structure)
+
+    **HTTP Method:** POST
+
+    **Query Parameters:** 
+    JSON Object containing elemCode should be sent through POST to this endpoint. (Direct support for Angular Requests, otherwise set content-type: text/json)
+    {"elemCode":"engineFWD"}
+
+    **Example Output (in JSON):**
+    
+        ```
+        {
+             "elemCode": "engineFWD",
+             "elemName": "4 Stroke Engine",
+             "parentGrpName": "FWD",
+             "anchorDisplay": "true",
+             "youTubeUrl": "https://www.youtube.com/embed/OGj8OneMjek",
+             "sampleImageUrl": "https://i2.wp.com/mechstuff.com/wp-content/uploads/2015/10/4StrokeEngine_Ortho_3D_Small.gif?resize=225%2C300",
+             "explanation": "<h5>Step 1: Intake Stroke</h5> ... compression strokes.",
+             "arrow_tail_path_d": "M244,339 C163,473 351,475 582,487",
+             "arrow_head_path_d": "M551,511 C636,481 588,522 576,460",
+             "soundUrl": "engine-rev.mp3",
+             "references": [
+                 "http://www.animatedengines.com/otto.html",
+                 "https://www.briggsandstratton.com/na/en_us/support/videos/browse/4-cycle-theory.html",
+                 "https://www.linkedin.com/pulse/20140717090644-133229807-principles-and-working-of-four-stroke-gasoline-engine"
+             ]
+         }
+        ```
+ 
+* **Add Component
+
+    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/addComponentData
+
+    **Description:** This provides an array of unique objects where each object has elemCode and elemName of all the components in the database. As you can see for listAllCarComponentsNames, the array returned has 4 Stroke Engine returned twice in the array. This endpoint prevents this from happening as shown in example output.
+
+    **HTTP Method:** POST
+
+    **Query Parameters:** 
+    JSON Object containing elemCode should be sent through POST to this endpoint. (Direct support for Angular Requests, otherwise set content-type: text/json)
+    {"elemCode":"engineFWD"}
+
+    **Example Output (in JSON):**
+    
+        ```
+        [    
+            {
+                "elemCode": "engineFWD",
+                "elemName": "4 Stroke Engine"
+            },
+            {
+                "elemCode": "carburetor",
+                "elemName": "Carburetor"
+            },
+            {
+                "elemCode": "differential",
+                "elemName": "Differential System"
+            }
+        ]
+        ```
+ * **Get Car Component Details**
+
+    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/getCarComponentsDetails
+
+    **Description:** This provides an array of unique objects where each object has elemCode and elemName of all the components in the database. As you can see for listAllCarComponentsNames, the array returned has 4 Stroke Engine returned twice in the array. This endpoint prevents this from happening as shown in example output.
+
+    **HTTP Method:** POST
+
+    **Query Parameters:** 
+    JSON Object containing elemCode should be sent through POST to this endpoint. (Direct support for Angular Requests, otherwise set content-type: text/json)
+    {"elemCode":"engineFWD"}
+
+    **Example Output (in JSON):**
+    
         ```
         [    
             {
@@ -64,3 +184,21 @@ This API can be used for getting details about car components. The details have 
         ]
         ```
  
+ 
+ ## MeraCaar Object Structure
+ 
+ The attributes of the object used by MeraCaar Server API are:
+ 
+ * **elemCode:** This is the element code of the component. This uniquely identifies each component. Components like engine are duplicated since there are 2 views (Front and Rear Wheel Drive at [Mera Caar](https://mera-caar.firebaseapp.com)). Thus, multiple components might have same description, youTubeUrl, sampleImageUrl but might have different arrow_tail_path_d for different views. This may be done to indicate engine in Front Wheel and Rear Wheel Drive views. Hence, they need to be identified using different elemCodes.
+ 
+ * **elemName:** This is the name of the component.
+ * **parentGrpName:** This is the view in which the component will be pointed out. This is specifically useful to [Mera Caar](https://mera-caar.firebaseapp.com) where different views have different components indicated in them.
+ * **anchorDisplay:** As mentioned in elemCode, multiple components in database can have same content for different views. This may be done to indicate engine in Front Wheel and Rear Wheel Drive views. This is used for filtering the components in the database for finding out only unique components. Thus, in this case, only one of such duplicate components will be having anchorDisplay value true.
+ Possible Values: true | false
+ * **youTubeUrl:** This is the URL of the YouTube video most relevant to the component preselected by the admin of this API.
+ * **sampleImageUrl:** This is the URL of the image most relevant to the component preselected by the admin of this API.
+ * **explanation:** This is the explanation most relevant to the component preselected by the admin of this API. This explanation is written using HTML tags, so that it can be directly displayed along with formatting.
+ * **arrow_tail_path_d:** This holds the coordinates
+ * arrow_head_path_d
+ * soundUrl
+ * references
