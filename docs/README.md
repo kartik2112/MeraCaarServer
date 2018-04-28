@@ -6,17 +6,17 @@ This API can be used for getting details about car components. The details have 
 
 # Usage of MeraCaar API
 
-* **List All Car Component Names**
+## List All Car Component Names
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsNames
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsNames
 
-    **Description:** This provides an array of objects where each object has ```elemCode``` and ```elemName``` of all the components in the database.
+**Description:** This provides an array of objects where each object has ```elemCode``` and ```elemName``` of all the components in the database.
 
-    **HTTP Method:** GET
+**HTTP Method:** GET
 
-    **Query Parameters:** None
+**Query Parameters:** None
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
     
         
         [    
@@ -39,17 +39,17 @@ This API can be used for getting details about car components. The details have 
         ]
         
 
-* **List All Unique Car Component Names**
+## List All Unique Car Component Names
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllUniqueCarComponentsNames
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllUniqueCarComponentsNames
 
-    **Description:** This provides an array of unique objects where each object has ```elemCode``` and ```elemName``` of all the components in the database. As you can see for ```listAllCarComponentsNames```, the array returned has 4 Stroke Engine returned twice in the array. This endpoint prevents this from happening as shown in example output.
+**Description:** This provides an array of unique objects where each object has ```elemCode``` and ```elemName``` of all the components in the database. As you can see for ```listAllCarComponentsNames```, the array returned has 4 Stroke Engine returned twice in the array. This endpoint prevents this from happening as shown in example output.
 
-    **HTTP Method:** GET
+**HTTP Method:** GET
 
-    **Query Parameters:** None
+**Query Parameters:** None
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
     
         
         [    
@@ -68,17 +68,17 @@ This API can be used for getting details about car components. The details have 
         ]
         
 
-* **List All Car Component Codes**
+## List All Car Component Codes
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsCodes
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/listAllCarComponentsCodes
 
-    **Description:** This provides an array of ```elemCode```s of all the components in the database.
+**Description:** This provides an array of ```elemCode```s of all the components in the database.
 
-    **HTTP Method:** GET
+**HTTP Method:** GET
 
-    **Query Parameters:** None
+**Query Parameters:** None
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
     
         
         [
@@ -91,20 +91,20 @@ This API can be used for getting details about car components. The details have 
          ]
         
 
-* **Get Car Component Details**
+## Get Car Component Details
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/getCarComponentsDetails
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/getCarComponentsDetails
 
-    **Description:** This provides an object containing the details of the car component whose ```elemCode``` is provided through POST. This car component object is as described [here](#meracaar-object-structure).
+**Description:** This provides an object containing the details of the car component whose ```elemCode``` is provided through POST. This car component object is as described [here](#meracaar-object-structure).
 
-    **HTTP Method:** POST
+**HTTP Method:** POST
 
-    **Query Parameters:** 
+**Query Parameters:** 
     JSON Object containing ```elemCode``` should be sent through POST to this endpoint. (Direct support present for Angular Requests, otherwise set ```content-type: text/json```)
     
     ```{"elemCode":"engineFWD"}```
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
     
         
         {
@@ -126,15 +126,15 @@ This API can be used for getting details about car components. The details have 
          }
         
  
-* **Add Component**
+## Add Component
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/addComponentData
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/addComponentData
 
-    **Description:** This is used for adding a new component to the database. Only the admin is allowed to do this. This involves passing a ```carData``` (defined [here](#meracaar-object-structure)) and ```modificationKey``` which is verified for its correctness before the new component data is added into the database.
+**Description:** This is used for adding a new component to the database. Only the admin is allowed to do this. This involves passing a ```carData``` (defined [here](#meracaar-object-structure)) and ```modificationKey``` which is verified for its correctness before the new component data is added into the database.
 
-    **HTTP Method:** POST
+**HTTP Method:** POST
 
-    **Query Parameters:** 
+**Query Parameters:** 
     JSON Object containing ```carData``` defined [here](#meracaar-object-structure) and ```modificationKey``` should be sent through POST to this endpoint. (Direct support present for Angular Requests, otherwise set ```content-type: text/json```)
     Example,
     
@@ -160,21 +160,21 @@ This API can be used for getting details about car components. The details have 
             "modificationKey" : "*****"
        }
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
      Output can contain ```Incorrect Key Specified``` or 
      
      ```{"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}```
         
         
-* **Update Component**
+## Update Component
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/updateComponentData
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/updateComponentData
 
-    **Description:** This is used for udpating an existing component in the database. Only the admin is allowed to do this. This involves passing a ```carData``` (defined [here](#meracaar-object-structure)) and ```modificationKey``` which is verified for its correctness before the updated component data is reflected in the database. **Note that in the component ```elemCode``` cannot be changed. If you want to change ```elemCode``` of a component, you need to first delete the existing component and then add a new component with this ```elemCode```.**
+**Description:** This is used for udpating an existing component in the database. Only the admin is allowed to do this. This involves passing a ```carData``` (defined [here](#meracaar-object-structure)) and ```modificationKey``` which is verified for its correctness before the updated component data is reflected in the database. **Note that in the component ```elemCode``` cannot be changed. If you want to change ```elemCode``` of a component, you need to first delete the existing component and then add a new component with this ```elemCode```.**
 
-    **HTTP Method:** POST
+**HTTP Method:** POST
 
-    **Query Parameters:** 
+**Query Parameters:** 
     JSON Object containing ```carData``` defined [here](#meracaar-object-structure) and ```modificationKey``` should be sent through POST to this endpoint. (Direct support present for Angular Requests, otherwise set ```content-type: text/json```)
     Example,
     
@@ -198,28 +198,28 @@ This API can be used for getting details about car components. The details have 
             "modificationKey" : "*****"
        }
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
      Output can contain ```Incorrect Key Specified``` or 
      
      ```{"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}```
         
 
 
-* **Delete Component**
+## Delete Component
 
-    **URL Endpoint:** https://blooming-garden-90433.herokuapp.com/deleteComponent
+**URL Endpoint:** https://blooming-garden-90433.herokuapp.com/deleteComponent
 
-    **Description:** This is used for deleting an existing component from the database. Only the admin is allowed to do this. This involves passing the component's ```elemCode``` and ```modificationKey``` which is verified for its correctness before the component data is deleted from the database.
+**Description:** This is used for deleting an existing component from the database. Only the admin is allowed to do this. This involves passing the component's ```elemCode``` and ```modificationKey``` which is verified for its correctness before the component data is deleted from the database.
 
-    **HTTP Method:** POST
+**HTTP Method:** POST
 
-    **Query Parameters:** 
+**Query Parameters:** 
     JSON Object containing ```elemCode``` and ```modificationKey``` should be sent through POST to this endpoint. (Direct support present for Angular Requests, otherwise set ```content-type: text/json```)
     Example,
     
       {"elemCode":"test2", "modificationKey":"*****"}
 
-    **Example Output (in JSON):**
+**Example Output (in JSON):**
      Output can contain ```Incorrect Key Specified``` or 
      
       {"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}
