@@ -240,8 +240,8 @@ This API can be used for getting details about car components. The details have 
 * **youTubeUrl:** This is the URL of the YouTube video most relevant to the component preselected by the admin of this API. This is of the format: [https://www.youtube.com/embed/XXXXXX](https://www.youtube.com/embed/XXXXXX). Here, XXXXXX is the YouTube video code that can be found in the URL of that video. This format is necessary for embedding the YouTube video IFrame in the page.
 * **sampleImageUrl:** This is the URL of the image most relevant to the component preselected by the admin of this API.
 * **explanation:** This is the explanation most relevant to the component preselected by the admin of this API. This explanation is written using HTML tags, so that it can be directly displayed along with formatting.
-* **arrow_tail_path_d:** This holds the coordinates of the arrow tail that points to the component in the view. **Ignore This since it is specific to [Mera Caar](https://mera-caar.firebaseapp.com)**.
-* **arrow_head_path_d:** This holds the coordinates of the arrow head that points to the component in the view. **Ignore This since it is specific to [Mera Caar](https://mera-caar.firebaseapp.com)**.
+* **arrow_tail_path_d:** This holds the coordinates of the arrow tail that points to the component in the view. **Ignore this since it is specific to [Mera Caar](https://mera-caar.firebaseapp.com)**.
+* **arrow_head_path_d:** This holds the coordinates of the arrow head that points to the component in the view. **Ignore this since it is specific to [Mera Caar](https://mera-caar.firebaseapp.com)**.
 * **soundUrl:** This holds the filename of the sound most relevant to the component preselected by the admin of this API. If the soundUrl is ```engine-rev.mp3```, then this sound can be found at the URL: [https://blooming-garden-90433.herokuapp.com/sounds/engine-rev.mp3](https://blooming-garden-90433.herokuapp.com/sounds/engine-rev.mp3)
 * **references:** This is an array of URLs to references most relevant to the component preselected by the admin of this API.
  
