@@ -102,7 +102,7 @@ This API can be used for getting details about car components. The details have 
 **Query Parameters:** 
     JSON Object containing ```elemCode``` should be sent through POST to this endpoint. (Direct support present for Angular Requests, otherwise set ```content-type: text/json```)
     
-    ```{"elemCode":"engineFWD"}```
+    {"elemCode":"engineFWD"}
 
 **Example Output (in JSON):**
     
