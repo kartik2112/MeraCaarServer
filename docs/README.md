@@ -163,7 +163,7 @@ This API can be used for getting details about car components. The details have 
 **Example Output (in JSON):**
      Output can contain ```Incorrect Key Specified``` or 
      
-     ```{"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}```
+     {"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}
         
         
 ## Update Car Component
@@ -201,7 +201,7 @@ This API can be used for getting details about car components. The details have 
 **Example Output (in JSON):**
      Output can contain ```Incorrect Key Specified``` or 
      
-     ```{"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}```
+     {"fieldCount":0, "affectedRows":1, "insertId":0, "serverStatus":2, "warningCount":0, "message":"", "protocol41":true, "changedRows":0}
         
 
 
