@@ -2,7 +2,7 @@
 
 This API can be used for getting details about car components. The details have been fetched from various sources and compiled into 1 interface.
 
-### For live demonstration of this API usage, check out [Mera Caar](https://mera-caar.firebaseapp.com/home) whose repository can be found here: [Mera Caar - Github](https://github.com/kartik2112/MeraCaar)
+**For live demonstration of this API usage, check out [Mera Caar](https://mera-caar.firebaseapp.com/home) whose repository can be found here: [Mera Caar - Github](https://github.com/kartik2112/MeraCaar)**
 
 # Usage of MeraCaar API
 
