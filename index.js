@@ -10,7 +10,7 @@ var escape = require('escape-html');  //Reference: https://www.npmjs.com/package
 var decode = require('unescape');     //Reference: https://www.npmjs.com/package/unescape
 var md5sum = crypto.createHash('md5');
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8081
 // const PORT = 8081
 
 
@@ -59,10 +59,10 @@ app.post('/testPOSTServer', function (req, res) {
 app.get('/listAllCarComponentsDetails',function(req,res){
   
   var connection = new mysql({
-    host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-    user     : 'root',
+    host     : 'db4free.net',
+    user     : 'meracaar_root',
     password : 'kkksss333',
-    database : 'MeraCaar'
+    database : 'meracaar'
   });
   
   // connection.connect();
@@ -104,11 +104,18 @@ app.get('/listAllCarComponentsDetails',function(req,res){
 
 app.get('/listAllCarComponentsNames',function(req,res){
   
+  // var connection = new mysql({
+  //   host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
+  //   user     : 'root',
+  //   password : 'kkksss333',
+  //   database : 'MeraCaar'
+  // });
+
   var connection = new mysql({
-    host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-    user     : 'root',
+    host     : 'db4free.net',
+    user     : 'meracaar_root',
     password : 'kkksss333',
-    database : 'MeraCaar'
+    database : 'meracaar'
   });
   
   // connection.connect();
@@ -137,10 +144,10 @@ app.get('/listAllCarComponentsNames',function(req,res){
 app.get('/listAllUniqueCarComponentsNames',function(req,res){
   
   var connection = new mysql({
-    host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-    user     : 'root',
+    host     : 'db4free.net',
+    user     : 'meracaar_root',
     password : 'kkksss333',
-    database : 'MeraCaar'
+    database : 'meracaar'
   });
   
   // connection.connect();
@@ -170,10 +177,10 @@ app.get('/listAllUniqueCarComponentsNames',function(req,res){
 app.get('/listAllCarComponentsCodes',function(req,res){
   
   var connection = new mysql({
-    host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-    user     : 'root',
+    host     : 'db4free.net',
+    user     : 'meracaar_root',
     password : 'kkksss333',
-    database : 'MeraCaar'
+    database : 'meracaar'
   });
   
   // connection.connect();
@@ -207,10 +214,10 @@ app.get('/listAllCarComponentsCodes',function(req,res){
 app.post('/getCarComponentsDetails',function(req,res){
   
   var connection = new mysql({
-    host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-    user     : 'root',
+    host     : 'db4free.net',
+    user     : 'meracaar_root',
     password : 'kkksss333',
-    database : 'MeraCaar'
+    database : 'meracaar'
   });
   
   // connection.connect();
@@ -270,10 +277,10 @@ app.post('/addComponentData',function(req,res){
   if(data['dataModificationKey'] === keyHash){
 
     var connection = new mysql({
-      host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-      user     : 'root',
+      host     : 'db4free.net',
+      user     : 'meracaar_root',
       password : 'kkksss333',
-      database : 'MeraCaar'
+      database : 'meracaar'
     });
   
     var results = connection.query(`INSERT INTO carData(elemCode,elemName,parentGrpName,anchorDisplay,youTubeUrl,sampleImageUrl,explanation,arrow_tail_path_d,arrow_head_path_d,soundUrl) values('${newData.elemCode}','${newData.elemName}','${newData.parentGrpName}','${newData.anchorDisplay}','${"https://www.youtube.com/embed/"+newData.youTubeUrl }','${newData.sampleImageUrl}','${escape(newData.explanation)}','${newData.arrow_tail_path_d}','${newData.arrow_head_path_d}','${newData.soundUrl}')`);
@@ -313,10 +320,10 @@ app.post('/updateComponentData',function(req,res){
   if(data['dataModificationKey'] === keyHash){
 
     var connection = new mysql({
-      host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-      user     : 'root',
+      host     : 'db4free.net',
+      user     : 'meracaar_root',
       password : 'kkksss333',
-      database : 'MeraCaar'
+      database : 'meracaar'
     });
   
     var results = connection.query(`UPDATE carData SET elemName='${newData.elemName}',parentGrpName='${newData.parentGrpName}',anchorDisplay='${newData.anchorDisplay}',youTubeUrl='${"https://www.youtube.com/embed/"+newData.youTubeUrl }',sampleImageUrl='${newData.sampleImageUrl}',explanation='${escape(newData.explanation)}',arrow_tail_path_d='${newData.arrow_tail_path_d}',arrow_head_path_d='${newData.arrow_head_path_d}',soundUrl='${newData.soundUrl}' WHERE elemCode='${newData.elemCode}'`);
@@ -356,10 +363,10 @@ app.post('/deleteComponent',function(req,res){
   if(data['dataModificationKey'] === keyHash){
 
     var connection = new mysql({
-      host     : 'db-kartik.cmkhwhg1ygzk.us-west-2.rds.amazonaws.com',
-      user     : 'root',
+      host     : 'db4free.net',
+      user     : 'meracaar_root',
       password : 'kkksss333',
-      database : 'MeraCaar'
+      database : 'meracaar'
     });
   
     var results1 = connection.query(`DELETE FROM carDataReferences WHERE elemCode='${req.body.elemCode}'`);
