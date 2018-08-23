@@ -395,18 +395,18 @@ var server = app.listen(PORT, function () {
 
 // Queries Ran
 // //
-// create table carData(elemCode varchar(40) PRIMARY KEY, 
+// create table carData(elemCode varchar(60) PRIMARY KEY, 
 //         elemName varchar(60),
 //         parentGrpName varchar(40),
 //         anchorDisplay varchar(5),
 //         youTubeUrl varchar(50),
 //         sampleImageUrl varchar(150),
-//         explanation varchar(1000),
+//         explanation varchar(5000),
 //         arrow_tail_path_d varchar(60),
 //         arrow_head_path_d varchar(60),
 //         soundUrl varchar(60));
 
-// create table carDataReferences(elemCode varchar(40), 
+// create table carDataReferences(elemCode varchar(60), 
 //         referenceLink varchar(150),
 //         primary key(elemCode, referenceLink),
 //         foreign key(elemCode) references carData(elemCode));
